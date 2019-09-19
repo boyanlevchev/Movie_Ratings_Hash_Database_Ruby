@@ -1,0 +1,91 @@
+$movies = {
+  heaven: 4,
+  }
+
+def again
+  puts "Want to start again?"
+  if gets.chomp.downcase == "yes"
+    intro
+  else
+    puts "Okay Bye Bye!"
+  end
+end
+
+def intro
+puts "Choose from the following, by typing below:
+Add
+Update
+Display
+Delete
+Quit"
+ choice = gets.chomp.downcase
+
+  case choice
+  when "add" 
+    puts "What's the name?"
+    title = gets.chomp.to_sym
+    puts "And what do you rate it?"
+    rating = gets.chomp.to_i
+    
+    if $movies[title] == nil
+    $movies[title]=rating
+      "Added!
+"
+      again
+    else
+    puts "Movie already exists!
+"
+      again
+    end
+    
+  when "update" 
+    puts "What's the title?"
+    title = gets.chomp.to_sym
+    
+    if $movies[title] == nil
+    puts "Movie does not exist!
+"
+      again
+    else
+    puts "What's the new rating?"
+      ratingNew = gets.chomp.to_i
+      $movies[title] = ratingNew
+      puts "Updated!
+"
+      again
+    end
+    
+  when "display" 
+    $movies.each {
+      |title, rating|
+      puts "#{title}: #{rating}
+"
+      }
+    again
+    
+  when "delete" 
+    puts "Which title?"
+    title = gets.chomp.to_sym
+    
+    if $movies[title] == nil
+    puts "Error, there ain't no movie like this
+"
+      again
+    else
+      puts "Deleted!
+"
+      $movies.delete([title])
+      again
+    end
+    
+  when "quit"
+    puts "Okay, bye bye!"
+    
+  else 
+    puts "Error!
+"
+    again
+  end
+end
+
+intro
