@@ -1,7 +1,13 @@
+#I start by creating a hash. The whole point of this update, was that in the Codecademy sample, the snippet would end
+#after inserting content into the hash
+#thereby resetting the hash - so I wanted to update it so that we could repeat the process of 
+#adding content to the hash, and actually see it grow! (until you hit quit, of course - then it all resets again)
+
 $movies = {
   heaven: 4,
   }
 
+#here i create a method again, from which I query the user if they would like to start the questionaire again
 def again
   puts "Want to start again?"
   if gets.chomp.downcase == "yes"
@@ -11,6 +17,7 @@ def again
   end
 end
 
+#here i create the method "intro" which holds the bulk of the process of this snippet. this could probably be broken into separate methods - but it works!
 def intro
 puts "Choose from the following, by typing below:
 Add
@@ -18,24 +25,24 @@ Update
 Display
 Delete
 Quit"
- choice = gets.chomp.downcase
+ choice = gets.chomp.downcase #receives users input
 
-  case choice
+  case choice #examines to see whether user input matches any of the choices listed below - "add", "update", "display", "delete", and "quit"
   when "add" 
-    puts "What's the name?"
+    puts "What's the name?" #some questions which accept a written answer
     title = gets.chomp.to_sym
     puts "And what do you rate it?"
     rating = gets.chomp.to_i
     
-    if $movies[title] == nil
-    $movies[title]=rating
+    if $movies[title] == nil #if the movie name doesn't already exist
+    $movies[title]=rating    #we add it! along with a rating
       "Added!
 "
       again
     else
     puts "Movie already exists!
 "
-      again
+      again #calls the "again" method, which starts the whole questionaire again, without affecting the contents of the $movies hash.
     end
     
   when "update" 
