@@ -2,6 +2,7 @@
 #after inserting content into the hash
 #thereby resetting the hash - so I wanted to update it so that we could repeat the process of 
 #adding content to the hash, and actually see it grow! (until you hit quit, of course - then it all resets again)
+#btw the hash key is the movie name and the value is its rating.
 
 $movies = {
   heaven: 4,
